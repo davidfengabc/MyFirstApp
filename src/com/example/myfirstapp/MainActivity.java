@@ -26,6 +26,7 @@ public class MainActivity extends Activity
       TextView textview = (TextView) findViewById(R.id.edit_message);
       File file = null;
       OutputStream fileOut = null;
+      InputStream in = null;
 
       if (Environment.MEDIA_MOUNTED.equals(state)) {
 	file = new File(getExternalFilesDir(null), "DemoFile.xml");
@@ -44,9 +45,25 @@ public class MainActivity extends Activity
       xmlOut.setOutput(fileOut, "UTF-8");
       xmlOut.setPrefix("stream","http://etherx.jabber.org/streams");
       xmlOut.setPrefix("","jabber:client");
-      xmlOut.startTag("stream","stream");
+      xmlOut.startTag("http://etherx.jabber.org/streams","stream");
       xmlOut.attribute(null,"to","gmail.com");
       xmlOut.attribute(null,"version","1.0");
       xmlOut.flush();
+      
+
+      fileOut.close();
+
+      String currentText = (textview.getText()).toString();
+      in = new BufferedInputStream(new FileInputStream(file));
+      int temp = in.read();
+
+      while(temp != -1)
+      {
+	currentText = currentText + (char)temp;
+	temp = in.read();
+      }
+      in.close();
+      file.delete();
+      textview.setText(currentText);
     }
 }
