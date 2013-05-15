@@ -1,5 +1,6 @@
 /home/david/development/MyFirstApp/bin/classes.dex : \
 /home/david/development/MyFirstApp/bin/classes/com/example/myfirstapp/MainActivity.class \
+/home/david/development/MyFirstApp/bin/classes/com/example/myfirstapp/XmppSession.class \
 /home/david/development/MyFirstApp/bin/classes/com/example/myfirstapp/R.class \
 /home/david/development/MyFirstApp/bin/classes/com/example/myfirstapp/R$layout.class \
 /home/david/development/MyFirstApp/bin/classes/com/example/myfirstapp/R$string.class \
