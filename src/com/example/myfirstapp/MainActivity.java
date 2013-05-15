@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.os.Environment;
 import java.io.*;
+import android.widget.EditText;
 
 public class MainActivity extends Activity
 {
@@ -24,18 +25,21 @@ public class MainActivity extends Activity
     }
 
   public void connect(View view) {
-    TextView textview = (TextView) findViewById(R.id.edit_message);
+    TextView textview = (TextView) findViewById(R.id.info_box);
+    EditText ipEntry = (EditText) findViewById(R.id.ip_entry);
+    String ipAddr = ipEntry.getText().toString();
+
     xmppSession = new XmppSession();
     try {
       textview.setText("connecting");
-      xmppSession.connect("130.76.191.156",9000);
-      textview.setText("start stream");
-      xmppSession.startStream();
-      textview.setText("stream started");
+      xmppSession.connect(ipAddr,5222);
+      textview.append("start stream");
+      //xmppSession.startStream();
+      textview.append("stream started");
       xmppSession.destroy();
-      textview.setText("socket closed");
+      textview.append("socket closed");
     } catch (Exception e) {
-      textview.setText(e.getMessage());
+      textview.append(e.getMessage());
       return;
     }
   }

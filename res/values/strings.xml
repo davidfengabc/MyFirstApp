@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MainActivity</string>
-    <string name="edit_message">Blah blah</string>
-    <string name="button">buttonlah blah</string>
+    <string name="empty_info">Blah blah</string>
+    <string name="button">Connect</string>
+    <string name="ip_entry">127.0.0.1</string>
 </resources>

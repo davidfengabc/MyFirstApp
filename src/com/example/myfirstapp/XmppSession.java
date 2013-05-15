@@ -20,6 +20,9 @@ public class XmppSession {
 
     xmlIn = factory.newPullParser();
     xmlIn.setInput(new BufferedInputStream(socket.getInputStream()), "UTF-8");
+
+    startStream();
+    startDoc();
   }
 
   public void startStream() throws Exception {
@@ -33,9 +36,28 @@ public class XmppSession {
 
   }
 
+  public void startDoc() throws Exception {
+    int event = xmlIn.getEventType();
+    if (event != XmlPullParser.START_DOCUMENT) {
+      throw new UnexpectedXmlTagException("Expected: Start Doc, actual: event");
+    }
+    System.out.println("start doc found\n");
+    xmlIn.next();
+    if (xmlIn.getEventType() != XmlPullParser.START_TAG) {
+      throw new UnexpectedXmlTagException("Expected: Start Doc, actual: event");
+    }
+    System.out.println("Start tag " + xmlIn.getName());
+  }
+
   public void destroy() throws Exception {
     socket.shutdownOutput();
     socket.shutdownInput();
     socket.close();
+  }
+}
+
+class UnexpectedXmlTagException extends Exception {
+  public UnexpectedXmlTagException(String message) {
+    super(message);
   }
 }

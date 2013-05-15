@@ -1,6 +1,6 @@
 # view AndroidManifest.xml #generated:8
 -keep class com.example.myfirstapp.MainActivity { <init>(...); }
 
-# onClick res/layout/main.xml #generated:12
+# onClick res/layout/main.xml #generated:16
 -keepclassmembers class * { *** connect(...); }
 
